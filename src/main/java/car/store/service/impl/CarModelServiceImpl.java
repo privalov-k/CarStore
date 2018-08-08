@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class CarModelServiceImpl implements CarModelService {
 
@@ -26,15 +27,17 @@ public class CarModelServiceImpl implements CarModelService {
     }
 
     @Override
-    public void loadAllCars() {
+    public List<CarModel> loadAllCars() {
         List<CarModel> listOfCars = carModelDao.loadAllCars();
         for(CarModel carModel : listOfCars) System.out.println(carModel.toString());
+        return listOfCars;
     }
 
     @Override
-    public void getCarById(long car_id) {
+    public CarModel getCarById(long car_id) {
         CarModel carModel = carModelDao.findCarById(car_id);
         System.out.println(carModel);
+        return carModel;
     }
 
     @Override

@@ -8,8 +8,6 @@ public class CarModel implements Serializable {
     String brand;
     int year;
 
-
-
     public CarModel(){}
 
     public CarModel(long carId, String brand, int year) {

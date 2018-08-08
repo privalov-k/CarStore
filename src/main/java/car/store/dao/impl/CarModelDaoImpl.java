@@ -31,7 +31,7 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
 
     @Override
     public void insert(CarModel car) {
-        String sql = "INSERT INTO carmodel " + "(CAR_ID, BRAND, YEAR) VALUES (?, ?, ?)" ;
+        String sql = "INSERT INTO carmodel " + "(CAR_ID, BRAND, YEAR) VALUES (?, ?, ?)";
         getJdbcTemplate().update(sql, new Object[]{car.getCarId(), car.getBrand(), car.getYear()});
     }
 
@@ -96,5 +96,9 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
         String sql = "SELECT Count(*) FROM carmodel";
         int total = getJdbcTemplate().queryForObject(sql, Integer.class);
         return total;
+    }
+
+    @Override
+    public void deleteCarById(long car_id) {
     }
 }
