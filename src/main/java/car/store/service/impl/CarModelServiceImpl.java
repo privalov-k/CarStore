@@ -6,6 +6,9 @@ import car.store.service.CarModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 @Service
@@ -13,6 +16,8 @@ public class CarModelServiceImpl implements CarModelService {
 
     @Autowired
     CarModelDao carModelDao;
+
+    private  final Logger log = LoggerFactory.getLogger(CarModelServiceImpl.class);
 
 
 
@@ -43,12 +48,12 @@ public class CarModelServiceImpl implements CarModelService {
     @Override
     public void getCarBrandById(long car_id) {
         String brand = carModelDao.findBrandById(car_id);
-        System.out.println("Car brand = " + brand);
+        log.debug("Car brand = " + brand);
     }
 
     @Override
     public void getTotalNumberOfCars() {
         int totalNumber = carModelDao.getTotalNumberOfCars();
-        System.out.println("Total Number of Cars is: " + totalNumber);
+        log.debug("Total Number of Cars is: " + totalNumber);
     }
 }

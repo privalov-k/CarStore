@@ -1,17 +1,22 @@
 package car.store.hellocontroller;
 
 import car.store.model.CarModel;
-import car.store.service.impl.CarModelServiceImpl;
+
+import car.store.service.CarModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class HelloController {
 
     @Autowired
-    private CarModelServiceImpl carModelService;
+    private CarModelService carModelService;
+
+    private final Logger log = LoggerFactory.getLogger(HelloController.class);
 
     @RequestMapping("/hello")
     public String sayHello(){
@@ -27,14 +32,15 @@ public class HelloController {
     @GetMapping("/car/{id}")
     public CarModel getCarById(@PathVariable("id")long car_id) {
         CarModel carModel = carModelService.getCarById(car_id);
-        System.out.println(carModel);
+        log.debug(carModel.toString());
         return carModel;
     }
 
     @GetMapping("/car")
     public List<CarModel> loadAllCars(){
         List<CarModel> cars = carModelService.loadAllCars();
-        for(CarModel carModel : cars) System.out.println(carModel.toString());
+        for(CarModel carModel : cars)
+            log.debug(carModel.toString());
         return cars;
     }
 
