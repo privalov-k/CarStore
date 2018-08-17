@@ -17,7 +17,7 @@ public class CarModelServiceImpl implements CarModelService {
     @Autowired
     CarModelDao carModelDao;
 
-    private  final Logger log = LoggerFactory.getLogger(CarModelServiceImpl.class);
+    private final static Logger log = LoggerFactory.getLogger(CarModelServiceImpl.class);
 
 
 

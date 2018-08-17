@@ -2,11 +2,16 @@ package car.store.core;
 
 import car.store.model.CarModel;
 import car.store.service.CarModelService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 
 import java.util.ArrayList;
@@ -25,6 +30,15 @@ public class CarStoreApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        ///////////////////////////////hibernate
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.close();
+        sessionFactory.close();
+
+
+       /* //////////////////////////////springboot
         Random random = new Random();
 
         //Car 1
@@ -51,6 +65,7 @@ public class CarStoreApplication implements CommandLineRunner {
         carModelService.getCarBrandById(Long.valueOf(car_2.getCarId()));
 
         //Get total car's in DB
-        carModelService.getTotalNumberOfCars();
+        carModelService.getTotalNumberOfCars();*/
+
     }
 }

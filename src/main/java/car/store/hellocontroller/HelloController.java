@@ -16,7 +16,7 @@ public class HelloController {
     @Autowired
     private CarModelService carModelService;
 
-    private final Logger log = LoggerFactory.getLogger(HelloController.class);
+    private final static Logger log = LoggerFactory.getLogger(HelloController.class);
 
     @RequestMapping("/hello")
     public String sayHello(){
