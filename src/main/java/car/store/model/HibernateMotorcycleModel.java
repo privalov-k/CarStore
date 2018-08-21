@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class HibernateMotorcycleModel {
     @Id
     @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "moto_id")
     private int id;
     @Column(name = "moto_brand")

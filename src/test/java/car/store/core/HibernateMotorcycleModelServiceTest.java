@@ -1,6 +1,7 @@
 package car.store.core;
 
 import car.store.model.HibernateMotorcycleModel;
+import car.store.model.Person;
 import car.store.service.HibernateMotorcycleModelService;
 import car.store.service.impl.HibernateMotorcycleModelServiceImpl;
 import org.junit.Test;
@@ -95,6 +96,13 @@ public class HibernateMotorcycleModelServiceTest {
         moto3.setBrand("Ural");
         moto3.setId(7);
         moto3.setYear(1990);
+
+        Person person = new Person();
+        person.setFullName("Tom");
+        person.setId(1);
+        person.getMotorcycles().add(moto1);
+        person.getMotorcycles().add(moto2);
+        person.getMotorcycles().add(moto3);
 
         //Сохраняем все мотоциклы
        motorcycleService.add(moto1);
