@@ -30,15 +30,7 @@ public class CarStoreApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        ///////////////////////////////hibernate
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.close();
-        sessionFactory.close();
-
-
-       /* //////////////////////////////springboot
+        //////////////////////////////springboot
         Random random = new Random();
 
         //Car 1
@@ -65,7 +57,7 @@ public class CarStoreApplication implements CommandLineRunner {
         carModelService.getCarBrandById(Long.valueOf(car_2.getCarId()));
 
         //Get total car's in DB
-        carModelService.getTotalNumberOfCars();*/
+        carModelService.getTotalNumberOfCars();
 
     }
 }

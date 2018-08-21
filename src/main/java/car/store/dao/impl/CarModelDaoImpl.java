@@ -98,13 +98,6 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
         return total;
     }
 
-    /*public List<CarModel> filter(String brand, int from, int to){
-        String sql = "SELECT * FROM carmodel WHERE BRAND = 'brand' AND YEAR IN (from, to)";
-        List<CarModel> list = this.getJdbcTemplate().queryForList(sql, CarModel.class);
-        return list;
-
-    }*/
-
     @Override
     public void deleteCarById(long car_id) {
     }

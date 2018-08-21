@@ -1,20 +1,21 @@
 package car.store.model;
 
 import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name= "motorcycles")
+@NamedQuery(name = "HibernateMotorcycleModel.getAll", query = "SELECT c from HibernateMotorcycleModel c")
 public class HibernateMotorcycleModel {
     @Id
+    @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "moto_id")
-    int id;
+    private int id;
     @Column(name = "moto_brand")
-    String brand;
+    private String brand;
     @Column(name = "moto_year")
-    int year;
+    private int year;
 
     public HibernateMotorcycleModel() {
     }
@@ -25,7 +26,7 @@ public class HibernateMotorcycleModel {
         this.year = year;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
