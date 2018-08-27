@@ -1,13 +1,12 @@
 package car.store.model;
 
-import org.springframework.data.annotation.Id;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name= "motorcycles")
 @NamedQuery(name = "HibernateMotorcycleModel.getAll", query = "SELECT c from HibernateMotorcycleModel c")
-public class HibernateMotorcycleModel {
-    @Id
+public class HibernateMotorcycleModel implements Serializable {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "moto_id")

@@ -3,44 +3,41 @@ package car.store.service.impl;
 import car.store.model.HibernateMotorcycleModel;
 import car.store.service.HibernateMotorcycleModelService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class HibernateMotorcycleModelServiceImpl implements HibernateMotorcycleModelService {
 
-    public EntityManager em = Persistence.createEntityManagerFactory("postgres@localhost").createEntityManager();
+    @PersistenceContext(unitName = "postgres@localhost")
+    public EntityManager em;
 
     @Override
+    @Transactional
     public HibernateMotorcycleModel add(HibernateMotorcycleModel motorcycle) {
-        em.getTransaction().begin();
-        HibernateMotorcycleModel motorcycleModel = em.merge(motorcycle);
-        em.getTransaction().commit();
-        return motorcycleModel;
+        return em.merge(motorcycle);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
-        em.getTransaction().begin();
         em.remove(get(id));
-        em.getTransaction().commit();
-
     }
 
     @Override
+    @Transactional
     public HibernateMotorcycleModel get(int id) {
         return em.find(HibernateMotorcycleModel.class,id);
     }
 
     @Override
+    @Transactional
     public void update(HibernateMotorcycleModel motorcycle) {
-        em.getTransaction().begin();
         em.merge(motorcycle);
-        em.getTransaction().commit();
     }
 
     @Override
+    @Transactional
     public List<HibernateMotorcycleModel> getAll() {
         TypedQuery<HibernateMotorcycleModel> namedQuery = em.createNamedQuery("HibernateMotorcycleModel.getAll", HibernateMotorcycleModel.class);
         return namedQuery.getResultList();

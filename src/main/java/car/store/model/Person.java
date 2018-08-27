@@ -15,7 +15,7 @@ public class Person {
     private String fullName;
 
     @OneToMany
-    private List<HibernateMotorcycleModel> motorcycles = new ArrayList<>();
+    private List<HibernateMotorcycleModel> motorcycles;
 
 
     public Person() {
