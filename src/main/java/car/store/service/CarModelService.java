@@ -1,18 +1,18 @@
 package car.store.service;
 
-import car.store.model.CarModel;
+import car.store.model.Car;
 
 import java.util.List;
 
 public interface CarModelService {
 
-    void insert(CarModel car);
+    void insert(Car car);
 
-    void insertBatch(List<CarModel> cars);
+    void insertBatch(List<Car> cars);
 
-    List<CarModel> loadAllCars();
+    List<Car> loadAllCars();
 
-    CarModel getCarById(long car_id);
+    Car getCarById(long car_id);
 
     void getCarBrandById(long car_id);
 

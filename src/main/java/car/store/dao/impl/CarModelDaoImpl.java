@@ -1,7 +1,7 @@
-package car.store.model.dao.impl;
+package car.store.dao.impl;
 
-import car.store.model.dao.CarModelDao;
-import car.store.model.CarModel;
+import car.store.dao.CarModelDao;
+import car.store.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -30,21 +30,21 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
 
 
     @Override
-    public void insert(CarModel car) {
+    public void insert(Car car) {
         String sql = "INSERT INTO carmodel " + "(CAR_ID, BRAND, YEAR) VALUES (?, ?, ?)";
-        getJdbcTemplate().update(sql, new Object[]{car.getCarId(), car.getBrand(), car.getYear()});
+        getJdbcTemplate().update(sql, new Object[]{car.getId(), car.getBrand(), car.getYear()});
     }
 
     @Override
-    public void insertBatch(List<CarModel> cars) {
+    public void insertBatch(List<Car> cars) {
         String sql = "INSERT INTO carmodel " + "(CAR_ID, BRAND, YEAR) VALUES (?, ?, ?)" ;
         getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
-                CarModel carModel = cars.get(i);
-                preparedStatement.setLong(1, carModel.getCarId());
-                preparedStatement.setString(2, carModel.getBrand());
-                preparedStatement.setInt(3, carModel.getYear());
+                Car car = cars.get(i);
+                preparedStatement.setLong(1, car.getId());
+                preparedStatement.setString(2, car.getBrand());
+                preparedStatement.setInt(3, car.getYear());
             }
 
             @Override
@@ -55,14 +55,14 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
     }
 
     @Override
-    public List<CarModel> loadAllCars() {
+    public List<Car> loadAllCars() {
         String sql = "SELECT * FROM * carmodel";
         List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);
 
-        List<CarModel> result = new ArrayList<CarModel>();
+        List<Car> result = new ArrayList<Car>();
         for(Map<String, Object> row:rows){
-            CarModel car = new CarModel();
-            car.setCarId((Long)row.get("car_id"));
+            Car car = new Car();
+            car.setId((Long)row.get("car_id"));
             car.setBrand((String)row.get("brand"));
             car.setYear((Integer)row.get("year"));
             result.add(car);
@@ -71,13 +71,13 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
     }
 
     @Override
-    public CarModel findCarById(long car_id) {
+    public Car findCarById(long id) {
         String sql = "SELECT * FROM carmodel WHERE CAR_ID = ?";
-        return (CarModel)getJdbcTemplate().queryForObject(sql, new Object[]{car_id}, new RowMapper<CarModel>() {
+        return (Car)getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<Car>() {
             @Override
-            public CarModel mapRow(ResultSet resultSet, int i) throws SQLException {
-                CarModel car = new CarModel();
-                car.setCarId(resultSet.getLong("car_id"));
+            public Car mapRow(ResultSet resultSet, int i) throws SQLException {
+                Car car = new Car();
+                car.setId(resultSet.getLong("car_id"));
                 car.setBrand(resultSet.getString("brand"));
                 car.setYear(resultSet.getInt("year"));
                 return car;
@@ -86,9 +86,9 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
     }
 
     @Override
-    public String findBrandById(long car_id) {
+    public String findBrandById(long id) {
         String sql = "SELECT * brand FROM carmodel WHERE car_id = ?";
-        return getJdbcTemplate().queryForObject(sql, new Object[]{car_id}, String.class);
+        return getJdbcTemplate().queryForObject(sql, new Object[]{id}, String.class);
     }
 
     @Override
@@ -96,9 +96,5 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
         String sql = "SELECT Count(*) FROM carmodel";
         int total = getJdbcTemplate().queryForObject(sql, Integer.class);
         return total;
-    }
-
-
-    public void deleteCarById(long car_id) {
     }
 }

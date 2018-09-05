@@ -1,48 +1,43 @@
 package car.store.service.impl;
 
-import car.store.model.dao.CarModelDao;
-import car.store.model.CarModel;
+import car.store.dao.CarModelDao;
+import car.store.model.Car;
 import car.store.service.CarModelService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class CarModelServiceImpl implements CarModelService {
 
     @Autowired
     CarModelDao carModelDao;
 
-    private final static Logger log = LoggerFactory.getLogger(CarModelServiceImpl.class);
-
-
-
     @Override
-    public void insert(CarModel car) {
+    public void insert(Car car) {
         carModelDao.insert(car);
     }
 
     @Override
-    public void insertBatch(List<CarModel> cars) {
+    public void insertBatch(List<Car> cars) {
         carModelDao.insertBatch(cars);
     }
 
     @Override
-    public List<CarModel> loadAllCars() {
-        List<CarModel> listOfCars = carModelDao.loadAllCars();
-        for(CarModel carModel : listOfCars) System.out.println(carModel.toString());
+    public List<Car> loadAllCars() {
+        List<Car> listOfCars = carModelDao.loadAllCars();
+        for(Car car : listOfCars) System.out.println(car.toString());
         return listOfCars;
     }
 
     @Override
-    public CarModel getCarById(long car_id) {
-        CarModel carModel = carModelDao.findCarById(car_id);
-        System.out.println(carModel);
-        return carModel;
+    public Car getCarById(long car_id) {
+        Car car = carModelDao.findCarById(car_id);
+        System.out.println(car);
+        return car;
     }
 
     @Override

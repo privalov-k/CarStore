@@ -6,15 +6,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
-@Table(name="person")
+@Table(name= "motorcycles")
+@ToString
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-public class Person {
+public class Motorcycle implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +23,11 @@ public class Person {
     private int id;
 
     @Column
-    private String fullName;
+    private String brand;
 
-    @OneToMany
-    private List<Motorcycle> motorcycles;
+    @Column
+    private int year;
+
+    @ManyToOne
+    private Person person;
 }
