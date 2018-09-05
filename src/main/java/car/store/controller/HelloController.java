@@ -1,4 +1,4 @@
-package car.store.hellocontroller;
+package car.store.controller;
 
 import car.store.model.CarModel;
 

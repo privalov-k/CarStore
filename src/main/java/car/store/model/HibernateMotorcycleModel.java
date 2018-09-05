@@ -7,6 +7,8 @@ import java.io.Serializable;
 @Table(name= "motorcycles")
 @NamedQuery(name = "HibernateMotorcycleModel.getAll", query = "SELECT c from HibernateMotorcycleModel c")
 public class HibernateMotorcycleModel implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "moto_id")
@@ -15,6 +17,17 @@ public class HibernateMotorcycleModel implements Serializable {
     private String brand;
     @Column(name = "moto_year")
     private int year;
+
+    @ManyToOne
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public HibernateMotorcycleModel() {
     }

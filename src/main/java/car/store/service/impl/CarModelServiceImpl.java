@@ -1,6 +1,6 @@
 package car.store.service.impl;
 
-import car.store.dao.CarModelDao;
+import car.store.model.dao.CarModelDao;
 import car.store.model.CarModel;
 import car.store.service.CarModelService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package car.store.dao;
+package car.store.model.dao;
 
 import car.store.model.CarModel;
 
@@ -18,5 +18,4 @@ public interface CarModelDao {
 
     int getTotalNumberOfCars();
 
-    void deleteCarById(long car_id);
 }

@@ -9,13 +9,13 @@ import java.util.List;
 
 public class HibernateMotorcycleModelServiceImpl implements HibernateMotorcycleModelService {
 
-    @PersistenceContext(unitName = "postgres@localhost")
+    @PersistenceContext(unitName = "postgres")
     public EntityManager em;
 
     @Override
     @Transactional
     public HibernateMotorcycleModel add(HibernateMotorcycleModel motorcycle) {
-        return em.merge(motorcycle);
+       return em.merge(motorcycle);
     }
 
     @Override

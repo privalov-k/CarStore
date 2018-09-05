@@ -1,6 +1,6 @@
-package car.store.dao.impl;
+package car.store.model.dao.impl;
 
-import car.store.dao.CarModelDao;
+import car.store.model.dao.CarModelDao;
 import car.store.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -98,7 +98,7 @@ public class CarModelDaoImpl extends JdbcDaoSupport implements CarModelDao {
         return total;
     }
 
-    @Override
+
     public void deleteCarById(long car_id) {
     }
 }
