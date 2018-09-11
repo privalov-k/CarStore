@@ -30,7 +30,7 @@ public class CarController {
         return car;
     }
 
-    @GetMapping("/car")
+    @GetMapping("/loadcar")
     public List<Car> loadAllCars(){
         List<Car> cars = carModelService.loadAllCars();
         for(Car car : cars)
